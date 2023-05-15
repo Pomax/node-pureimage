@@ -5,7 +5,7 @@ import {getBytesBigEndian} from './uint32.js'
 
 export * from './text.js'
 
-export function make (w,h,options) {
+export function make (w,h,options):Bitmap {
     return new Bitmap(w,h,options)
 }
 
@@ -17,7 +17,7 @@ export function make (w,h,options) {
  *
  * @returns {Promise<void>}
  */
-export function encodePNGToStream(bitmap, outstream) {
+export function encodePNGToStream(bitmap, outstream):Promise<void> {
     return new Promise((res,rej)=>{
         if(!bitmap.hasOwnProperty('data') || !bitmap.hasOwnProperty('width') || !bitmap.hasOwnProperty('height')) {
             return rej(new TypeError('Invalid bitmap image provided'));
@@ -58,7 +58,7 @@ export function encodePNGToStream(bitmap, outstream) {
  *
  * @returns {Promise<Bitmap>}
  */
-export function decodePNGFromStream(instream) {
+export function decodePNGFromStream(instream):Promise<Bitmap> {
     return new Promise((res,rej)=>{
         instream.pipe(new PNG())
             .on("parsed", function() {
@@ -84,7 +84,7 @@ export function decodePNGFromStream(instream) {
  * @param {Int} Number between 0 and 100 setting the JPEG quality
   * @returns {Promise<void>}
  */
-export function encodeJPEGToStream(img, outstream, quality) {
+export function encodeJPEGToStream(img, outstream, quality):Promise<void> {
     quality = quality || 90;
     return new Promise((res,rej)=> {
         if(!img.hasOwnProperty('data') || !img.hasOwnProperty('width') || !img.hasOwnProperty('height')) {
@@ -112,7 +112,7 @@ export function encodeJPEGToStream(img, outstream, quality) {
  *
  * @returns {Promise<Bitmap>}
  */
-export function decodeJPEGFromStream(data, opts) {
+export function decodeJPEGFromStream(data, opts):Promise<Bitmap> {
     return new Promise((res,rej)=>{
         try {
             const chunks = []

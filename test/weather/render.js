@@ -1,6 +1,6 @@
 import chai, {expect} from "chai"
 import os from "os"
-import * as pure from "../../src/index.js"
+import * as pure from "../../dist/index.js"
 import fs from "fs"
 import path from 'path'
 import {WeatherData} from './weatherdata.js'

@@ -16,6 +16,8 @@ export class Line {
      * @param {Point} end   An instance of {@link Point} containing X and Y co-ordinates
      * @memberof Line
      */
+    public readonly start: Point;
+    public readonly end: Point;
     /**
      * Construct a Line using 4 {@link number}s
      *
@@ -25,30 +27,20 @@ export class Line {
      * @param {number} endY   Ending position on the Y acis
      * @memberof Line
      */
-    constructor (){
-        if (arguments.length === 4) {
-
-            /**
-             * @type {Point}
-            */
-            this.start = {};
-
-            /**
-             * @type {Point}
-            */
-            this.end   = {};
-
-            [this.start.x, this.start.y, this.end.x, this.end.y] = arguments;
-            for(let argument_index in arguments) {
-                if(arguments.hasOwnProperty(argument_index)) {
-                    let argument = arguments[argument_index];
+    constructor (...args:any[]){
+        if (args.length === 4) {
+            this.start = new Point(args[0],args[1]);
+            this.end   = new Point(args[2],args[3]);
+            for(let argument_index in args) {
+                if(args.hasOwnProperty(argument_index)) {
+                    let argument = args[argument_index];
                     if(typeof argument !== 'number'){
                         throw TypeError('When passing 4 arguments, only numbers may be passed');
                     }
                 }
             }
-        } else if(arguments.length === 2) {
-            [this.start, this.end] = arguments;
+        } else if(args.length === 2) {
+            [this.start, this.end] = args;
         } else {
             throw Error('Please pass either two Point objects, or 4 integers to the constructor');
         }

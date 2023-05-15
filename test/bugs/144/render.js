@@ -1,5 +1,5 @@
 // const fs = require('node:fs');
-import * as PImage from '../../../src/index.js'
+import * as PImage from '../../../dist/index.js'
 import fs from "fs"
 // PImage.registerFont('../node-pureimage/test/unit/fixtures/fonts/SourceSansPro-Regular.ttf', 'Source Sans Pro').loadSync()
 

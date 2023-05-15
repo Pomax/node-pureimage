@@ -1,4 +1,4 @@
-import * as PImage from "../../src/index.js"
+import * as PImage from "../../src/index.ts"
 import * as fs from 'fs'
 const img1 = PImage.make(100, 100)
 const ctx = img1.getContext('2d');

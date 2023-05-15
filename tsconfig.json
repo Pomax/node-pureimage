@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "lib": ["ES2020","DOM"],
+    "moduleResolution": "node",
+    "outDir": "dist",
+    "esModuleInterop": true,
+    "declaration": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+
+    "target": "ES2022",
+    "module": "ES2022",
+    "sourceMap": true,
+    "resolveJsonModule": true,
+  },
+  "include": [
+    "src/*.ts",
+    "src/*.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

@@ -1,7 +1,7 @@
 import chai, {expect} from "chai"
 
-import * as pureimage from "../src/index.js"
-import {OPAQUE_BLACK} from '../src/named_colors.js'
+import * as pureimage from "../dist/index.js"
+import {OPAQUE_BLACK} from '../dist/named_colors.js'
 import {save} from './common.js'
 
 describe('clipping tests',() => {

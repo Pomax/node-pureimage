@@ -1,5 +1,5 @@
 import chai, {expect} from "chai"
-import {Point} from "../src/point.js"
+import {Point} from "../dist/point.js"
 
 /**
  * @test {Point}

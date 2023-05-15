@@ -4,6 +4,8 @@
  * @class Point
  */
 export class Point {
+    public readonly x: any;
+    public readonly y: any;
     /**
      * Creates an instance of Point.
      * @param {number} x X position
@@ -76,7 +78,7 @@ export const toRad = (deg) => Math.PI/180*deg
 export const toDeg = (rad) => 180/Math.PI*rad
 
 
-export function calc_min_bounds(pts) {
+export function calc_min_bounds(pts):Bounds {
     let x1 = Number.POSITIVE_INFINITY
     let y1 = Number.POSITIVE_INFINITY
     let x2 = Number.NEGATIVE_INFINITY
@@ -91,6 +93,10 @@ export function calc_min_bounds(pts) {
 }
 
 export class Bounds {
+    public readonly x1: any;
+    public readonly y1: any;
+    public readonly x2: any;
+    public readonly y2: any;
     constructor(x1,y1,x2,y2) {
         this.x1 = x1
         this.y1 = y1

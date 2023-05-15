@@ -58,7 +58,7 @@ export function registerFont(binaryPath, family, weight, style, variant) {
             }
         },
         loadPromise: function() {
-            return new Promise((res,rej)=>{
+            return new Promise<void>((res,rej)=>{
                 this.load(()=>res())
             })
         }
@@ -100,11 +100,11 @@ export function processTextPath(ctx,text,x,y, fill, hAlign, vAlign) {
         console.warn("Font missing",ctx._font)
     }
     const metrics = measureText(ctx,text)
-    if(hAlign === 'start' || hAlign === 'left') /* x = x*/ ;
+    if(hAlign === 'start' || hAlign === 'left') /* x = x*/ {}
     if(hAlign === 'end'   || hAlign === 'right')  x = x - metrics.width
     if(hAlign === 'center')  x = x - metrics.width/2
 
-    if(vAlign === 'alphabetic') /* y = y */ ;
+    if(vAlign === 'alphabetic') /* y = y */ {}
     if(vAlign === 'top') y = y + metrics.emHeightAscent
     if(vAlign === 'middle') y = y + metrics.emHeightAscent/2+metrics.emHeightDescent/2
     if(vAlign === 'bottom') y = y + metrics.emHeightDescent

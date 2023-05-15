@@ -1,4 +1,4 @@
-import * as pureimage from "../src/index.js"
+import * as pureimage from "../dist/index.js"
 import chai, {expect} from "chai"
 import {mkdir, save} from './common.js'
 

@@ -3,7 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 
 // https://rollupjs.org/guide/en/#configuration-files
 export default {
-    input: 'src/index.js',
+    input: 'dist/index.js',
     output: {
         file: 'dist/pureimage-umd.cjs',
         format: 'umd',

@@ -28,6 +28,25 @@ const PATH_COMMAND = {
  * @class Context
  */
 export class Context {
+    private bitmap: any;
+    private _fillColor: any;
+    private _fillStyle_text: string;
+    private _strokeColor: any;
+    private _strokeStyle_text: string;
+    private _globalAlpha: number;
+    private _lineWidth: number;
+    private _font: { size: number; family: string };
+    private _font_text:string;
+    public textAlign: string;
+    public textBaseline: string;
+    public imageSmoothingEnabled: boolean;
+    private _clip: any[];
+    private states: any[];
+    private _transform: any;
+    private path: any[];
+    private _closed: boolean;
+    private pathstart: Point;
+    private debug: boolean;
     /**
      * Creates a new pure image Context
      *
@@ -35,6 +54,7 @@ export class Context {
      * @memberof Context
      */
     constructor(bitmap) {
+        this.debug = false
         /**
          * An instance of the {@link Bitmap} class. Used for direct pixel manipulation(for example setting pixel colours)
          * @type {Bitmap}
@@ -75,6 +95,7 @@ export class Context {
             family:'invalid',
             size:12
         };
+        this._font_text = '12 pt invalid'
 
         /** @type {string} horizontal text alignment, one of start, end, left, center, right. start is the default */
         this.textAlign = 'start'
@@ -120,7 +141,7 @@ export class Context {
      * @param {string} val
      * @example ctx.fillStyle = 'rgba(0, 25, 234, 0.6)';
      */
-    set fillStyle (val) {
+    set fillStyle (val: any) {
         if(val instanceof G.CanvasGradient) {
             this._fillColor = val
         } else {
@@ -143,9 +164,9 @@ export class Context {
      * @param {string} val
      * @example ctx.strokeStyle = 'rgba(0, 25, 234, 0.6)';
      */
-    set strokeStyle (val) {
+    set strokeStyle (val:any) {
         if(val instanceof G.CanvasGradient) {
-            this._strokeStyle_text = val
+            this._strokeColor = val
         } else {
             this._strokeColor = colorStringToUint32(val);
             this._strokeStyle_text = val;
@@ -194,13 +215,16 @@ export class Context {
      * @see https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/font
      * @type {string} a string representing the font size and family to use
      */
-    get font() {};
+    get font() {
+        return this._font_text
+    };
 
     /**
      * @param {string} font to use. Note that the font weight is not supported.
      * @example ctx.font = '16px serif'
      */
-    set font(val) {
+    set font(val:string) {
+        this._font_text = val
         const n = val.trim().indexOf(' ')
         this._font.size   = parseInt(val.slice(0, n))
         this._font.family = val.slice(n).trim();
@@ -211,7 +235,7 @@ export class Context {
         return new G.LinearGradient(x0,y0,x1,y1)
     }
     createRadialGradient(x0,y0) {
-        return new G.RadialGradient(x0,y0)
+        return new G.RadialGradient(x0,y0,0,0)
     }
 
 
@@ -1250,7 +1274,7 @@ function fract(v) {  return v-Math.floor(v);   }
  */
 function pathToLines(path) {
     const lines = []
-    let curr = null
+    let curr:Point = new Point(0,0)
 
     path.forEach(function(cmd) {
         if(cmd[0] === PATH_COMMAND.MOVE) {
@@ -1332,10 +1356,10 @@ function path_to_stroked_path(path, w) {
     return final_path
 }
 function sub_path_to_stroked_sub_path(path, w) {
-    let curr = null
+    let curr:Point = new Point(0,0)
     let outside = []
     let inside = []
-    let path_start = 0
+    let path_start:Point = new Point(0,0)
 
     function project(A,B,scale) {
         if(A.equals(B)) console.log("same points!",A,B)

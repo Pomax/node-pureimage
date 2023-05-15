@@ -9,7 +9,7 @@
   },
   "type": "module",
   "types": "./types/index.d.ts",
-  "module": "./src/index.js",
+  "module": "dist/index.js",
   "main": "./dist/pureimage-umd.cjs",
   "browser": "./src/browser.js",
   "repository": {
@@ -33,13 +33,15 @@
     "file-type": "^7.6.0",
     "mocha": "^10.2.0",
     "rollup": "^2.44.0",
-    "tape": "^5.2.2"
+    "tape": "^5.2.2",
+    "typescript": "^5.0.4"
   },
   "scripts": {
     "test": "mocha",
     "docs": "esdoc",
     "build": "rollup -c",
     "clean": "rm -rf dist/ output/ *.tgz",
+    "build-ts": "npm run clean && mkdir dist && cp src/*.js dist && tsc -p .",
     "release": "npm run clean && npm run build && npm run test && npm version patch && npm publish"
   },
   "engines": {

@@ -1,8 +1,7 @@
 import chai, {expect} from "chai"
-import * as pureimage from "../src/index.js"
+import * as pureimage from "../dist/index.js"
 import {PassThrough} from "stream"
 import fs from "fs"
-import {toBeOfFileType} from "./unit/matchers/toBeOfFileType.js"
 import {FIXTURES_DIR} from './common.js'
 
 // expect.extend(toBeOfFileType);

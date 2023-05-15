@@ -75,7 +75,7 @@ export const fromBytesBigEndian = function (highByte, secondHighByte, thirdHighB
      *  @return {Number} the high part of the number
      */
     export const highPart = function (number) {
-        return exporter.toUint32(number / POW_2_32);
+        return toUint32(number / POW_2_32);
     };
 
     //
@@ -215,7 +215,7 @@ export const fromBytesBigEndian = function (highByte, secondHighByte, thirdHighB
         const high16 = ((factor1 & 0xffff0000) >>> 0) * factor2
         const low16 = (factor1 & 0x0000ffff) * factor2
         // the addition is dangerous, because the result will be rounded, so the result depends on the lowest bits, which will be cut away!
-        const carry = ((exporter.toUint32(high16) + exporter.toUint32(low16)) >= POW_2_32) ? 1 : 0
-        resultUint32Array2[0] = (exporter.highPart(high16) + exporter.highPart(low16) + carry) >>> 0;
+        const carry = ((toUint32(high16) + toUint32(low16)) >= POW_2_32) ? 1 : 0
+        resultUint32Array2[0] = (highPart(high16) + highPart(low16) + carry) >>> 0;
         resultUint32Array2[1] = ((high16 >>> 0) + (low16 >>> 0));// >>> 0;
     };

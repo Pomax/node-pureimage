@@ -1,7 +1,7 @@
 import chai, {expect} from "chai"
 
-import {Line} from "../src/line.js"
-import {Point} from "../src/point.js"
+import {Line} from "../dist/line.js"
+import {Point} from "../dist/point.js"
 
 /**
  * @test {Line}

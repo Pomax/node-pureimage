@@ -10,6 +10,9 @@ import {fromBytesBigEndian, getBytesBigEndian} from './uint32.js'
  * @class Bitmap
  */
 export class Bitmap {
+    public readonly width: number;
+    public readonly height: number;
+    public data: Uint8Array;
 
     /**
      * Creates an instance of Bitmap.
@@ -33,7 +36,7 @@ export class Bitmap {
         /**
          * @type {ArrayBuffer}
          */
-        this.data = Buffer.alloc(w*h*4);
+        this.data = new Uint8Array(w*h*4);
 
         // per the spec, fill it with opaque black
         // https://html.spec.whatwg.org/multipage/canvas.html#output-bitmap

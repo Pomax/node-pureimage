@@ -1,8 +1,5 @@
 import chai, {expect} from "chai"
-import fs from "fs"
-
-import * as pureimage from "../src/index.js"
-import * as PImage from "../src/index.js";
+import * as pureimage from "../dist/index.js"
 import {save} from './common.js'
 
 describe('text drawing',() => {
@@ -147,7 +144,7 @@ describe('font loading', () => {
         pureimage.registerFont(
             'test/unit/fixtures/fonts/SourceSansPro-Regular.ttf', 'MyFont'
         ).loadPromise().then(()=>{
-            let image = PImage.make(200,200)
+            let image = pureimage.make(200,200)
             let context = image.getContext('2d');
             context.font = `48px MyFont`;
             const metrics = context.measureText('some text')
@@ -158,7 +155,7 @@ describe('font loading', () => {
         // const fontRecord = pureimage.registerFont('./lib/fonts/monofonto/monofontorg.otf', 'MyFont', 10, '', '');
         const fontRecord = pureimage.registerFont('test/unit/fixtures/fonts/SourceSansPro-Regular.ttf', 'MyFont', 10, '', '');
         fontRecord.loadSync();
-        let image = PImage.make(200,200)
+        let image = pureimage.make(200,200)
         let context = image.getContext('2d');
         context.font = `48px MyFont`;
         const metrics = context.measureText('some text')
@@ -175,7 +172,7 @@ describe('otf fonts',() => {
 
         const fontRecord = pureimage.registerFont('test/bugs/144/Inter-regular.otf', 'Inter')
         fontRecord.loadSync();
-        const image = PImage.make(100, 100);
+        const image = pureimage.make(100, 100);
         const ctx = image.getContext('2d');
         ctx.fillStyle = '#fff';
         ctx.fillRect(0, 0, 100, 100);

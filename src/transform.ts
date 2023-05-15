@@ -8,7 +8,6 @@
  * Based on a class created by Simon Sarris - www.simonsarris.com - sarris@acm.org
  */
 
-"use strict";
 import {Point} from './point.js'
 
 const IDENTITY_MATRIX = [1,0,0,1,0,0];
@@ -16,7 +15,7 @@ const IDENTITY_MATRIX = [1,0,0,1,0,0];
 /**
  * @ignore
  */
-export function Transform(context) {
+export function Transform(context?) {
     this.context = context;
     this.matrix = [1,0,0,1,0,0]; //initialize with the identity matrix
     this.stack = [];

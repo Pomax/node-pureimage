@@ -4,7 +4,7 @@ draws the current date in big black letters,
 and writes the final image to disk
 
  */
-import * as PImage from "../../src/index.js"
+import * as PImage from "../../dist/index.js"
 import fs from 'fs'
 import * as client from "https"
 

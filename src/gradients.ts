@@ -2,7 +2,15 @@ import {Point} from "./point.js"
 import {fromBytesBigEndian, getBytesBigEndian} from './uint32.js'
 import {clamp, colorStringToUint32, lerp} from './util.js'
 
-export class CanvasGradient {
+type GradientStop = {
+    t:number,
+    color:number,
+}
+interface ICanvasGradient {
+    colorAt(x:number,y:number):number
+}
+export abstract class CanvasGradient implements ICanvasGradient{
+    private stops: GradientStop[];
     constructor() {
         this.stops = []
     }
@@ -16,9 +24,13 @@ export class CanvasGradient {
         const fc = first.map((f,i) => lerp(f,second[i],t)).map(c=>c*255)
         return fromBytesBigEndian(fc[0],fc[1],fc[2],0xFF)
     }
+
+    abstract colorAt(x: number, y: number): number;
 }
 
 export class LinearGradient extends CanvasGradient {
+    private start: Point;
+    private end: Point;
     constructor(x0,y0,x1,y1) {
         super()
         this.start = new Point(x0,y0)
@@ -44,6 +56,7 @@ export class LinearGradient extends CanvasGradient {
 
 
 export class RadialGradient extends CanvasGradient {
+    private start: Point;
     constructor(x0, y0, x1, y1) {
         super()
         this.start = new Point(x0,y0)
